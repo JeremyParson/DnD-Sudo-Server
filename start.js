@@ -1,4 +1,3 @@
-const mysql = require('mysql');
 const express = require('express');
 const validator = require('express-validator');
 const bodyParser = require('body-parser');
@@ -9,6 +8,7 @@ const memory = require("memory");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const connection = require("./database/connection")
 
 const app = express();
 
