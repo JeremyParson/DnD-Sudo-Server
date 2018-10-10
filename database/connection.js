@@ -28,3 +28,32 @@ getKey().then((results) => {
         console.log(results);
     })
 })
+
+exports.getId = (password, email) => {
+    return new Promise((res, rej) => {
+        let search = "user_id";
+        let sql = `SELECT ${search} FROM users WHERE email = ${email} AND password = ${password}`;
+
+        console.log(sql);
+
+        let queryDB = () => {
+            return new Promise((res, rej) => {
+                connection.query(sql, function(err, results) {
+                    if (err) throw err;
+                    console.log(results);
+                    if(results[0] == undefined){
+                        res(null);
+                    }else{
+                        res(results[0].user_id);
+                    }   
+                })
+            })
+
+        }
+
+        queryDB().then((data) => {
+            res(data)
+        })
+
+    })
+}
